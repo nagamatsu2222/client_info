@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>User list</title>
+    <style>
+      table{
+        border-collapse:  collapse;
+        margin: 0 auto;
+        width: 90%;
+      }
+      th{
+        background-color: #ddf5ef;
+      }
+      th,td{
+        padding: 1.5% 0;
+        border: 1px solid;
+        font-size:small;
+        text-align: center;
+      }
+      .border{
+        border: 1px solid;
+      }
+      .search_wrap{
+        margin: 0 auto;
+        width: 90%;
+        text-align: right;
+      }
+      input.search {
+        -webkit-appearance: none;
+        display: inline-block;
+        margin-right: 0;
+        margin-bottom: 20px;
+        padding: 10px;
+        width: 200px;
+        height: 40px;
+        font-size: 100%;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      input.search_btn{
+        -webkit-appearance: none;
+        display: inline-block;
+        padding: 0 10px;
+        color: #fff;
+        height: 40px;
+        font-size: 100%;
+        vertical-align: top;
+        border: none;
+        border-radius: 5px;
+        background: #1f76e2;
+      }
+    </style>
+</head>
+<body>
+    <div class="search_wrap">
+      <input type="search" placeholder="検索" id="nameSearch" class="search" value="">
+      <input type="submit" value="送信" id="nameSearchBtn" class="search_btn" onclick="searchBtn()">
+    </div>
+    <table class="border usersBox">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>名前</th>
+          <th>ふりがな</th>
+          <th>性別</th>
+          <th>メールアドレス</th>
+          <th>電話番号</th>
+          <th>住所</th>
+          <th>都道府県</th>
+          <th>世帯数</th>
+        </tr>
+      </thead>
+      <tbody class="usersBoxInfo">
+        <% for (let i = 0; i < users.length; i++) { %>
+        <tr>
+          <td><%= users[i].id %></td>
+          <td><%= users[i].name %></td>
+          <td><%= users[i].kana_name %></td>
+          <td><%= users[i].gender %></td>
+          <td><%= users[i].email %></td>
+          <td><%= users[i].phone %></td>
+          <td><%= users[i].address %></td>
+          <td><%= users[i].workplace %></td>
+          <td><%= users[i].household %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <script type="text/javascript">
+
+        let users = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
+        let user_list_box = document.getElementById('user_list_box');
+        let nameSearch = document.getElementById('nameSearch');
+        let nameSearchBtn = document.getElementById('nameSearchBtn');
+        let usersBox = document.getElementsByClassName("usersBox");
+        let usersBoxInfo = document.getElementsByClassName("usersBoxInfo");
+
+        let nameList = [];
+
+        function searchBtn(){
+          for (let i = 0; i < users.length; i++) {
+            if(nameSearch === ""){
+            }else{
+              // 一覧表削除
+              while(usersBoxInfo[0].firstChild){
+                usersBoxInfo[0].removeChild(usersBoxInfo[0].firstChild);
+              }
+              // 検索結果を出力する
+              if(users[i].name.indexOf(nameSearch.value)!== -1){
+                nameList.push(users[i]);
+                console.log(nameList)
+                usersBox[0].insertAdjacentHTML("beforeend",`<tr><td>${users[i].id}</td><td>${users[i].name}</td><td>${users[i].kana_name}</td><td>${users[i].gender}</td><td>${users[i].email}</td><td>${users[i].phone}</td><td>${users[i].address}</td><td>${users[i].workplace}</td><td>${users[i].household}</td></tr>`)
+              }
+            }
+          }
+        }
+
+
+        let button = document.getElementById('button');
+        let form_text = document.getElementById("form_text");
+        let text_box = document.getElementById('text_box');
+
+        function change(){
+          users.forEach(function(users) {
+            console.log(users);
+            if(users.id == form_text.value){
+              text_box.insertAdjacentHTML("beforeend",`<div>${users.name}</div><div>${users.email}</div>`);
+            }
+          });
+        }
+        let form = document.getElementById('form');
+        let name = document.getElementById('name');
+        let mail = document.getElementById('mail');
+        let form_btn = document.getElementById('form_btn');
+
+
+        function update() {
+          const isRequired = form.checkValidity();
+
+          if (isRequired) {
+            form_btn.disabled = false;
+            form_btn.style.opacity = 1;
+            form_btn.style.cursor = "pointer";
+            return;
+          }
+        }
+
+    </script>
+</body>
+</html>
