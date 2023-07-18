@@ -51,6 +51,9 @@
         border-radius: 5px;
         background: #1f76e2;
       }
+      .select_wrap{
+        margin: 40px 0 40px;
+      }
     </style>
 </head>
 <body>
@@ -70,6 +73,7 @@
           <th>住所</th>
           <th>都道府県</th>
           <th>世帯数</th>
+          <th>追加</th>
         </tr>
       </thead>
       <tbody class="usersBoxInfo">
@@ -84,21 +88,24 @@
           <td><%= users[i].address %></td>
           <td><%= users[i].workplace %></td>
           <td><%= users[i].household %></td>
+          <td><input type="button" value="選択" class="usersBoxselectBtn"></td>
         </tr>
         <% } %>
       </tbody>
     </table>
+    <div class="select_wrap">
+      <table class="selectUsers"></table>
+    </div>
+    <!-- ここからjsの記述 -->
     <script type="text/javascript">
-
         let users = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
         let user_list_box = document.getElementById('user_list_box');
         let nameSearch = document.getElementById('nameSearch');
         let nameSearchBtn = document.getElementById('nameSearchBtn');
         let usersBox = document.getElementsByClassName("usersBox");
         let usersBoxInfo = document.getElementsByClassName("usersBoxInfo");
-
         let nameList = [];
-
+        // 検索フォームの送信ボタンをクリック
         function searchBtn(){
           for (let i = 0; i < users.length; i++) {
             if(nameSearch === ""){
@@ -116,6 +123,34 @@
             }
           }
         }
+
+
+        const usersBoxselectBtn = document.getElementsByClassName("usersBoxselectBtn");
+        const selectUsers = document.getElementsByClassName("selectUsers");
+
+        // 選択ボタンをクリックしたら削除
+        function butotnClick(event){
+          event.currentTarget.parentNode.parentNode.remove();
+          for (let i = 0; i < users.length; i++) {
+            nameList.push(users[i]);
+            selectUsers[0].insertAdjacentHTML("beforeend",`<tr><td>${users[i].id}</td><td>${users[i].name}</td><td>${users[i].kana_name}</td><td>${users[i].gender}</td><td>${users[i].email}</td><td>${users[i].phone}</td><td>${users[i].address}</td><td>${users[i].workplace}</td><td>${users[i].household}</td></tr>`)
+          }
+        }
+        usersBoxselectBtn[0].addEventListener('click', butotnClick);
+
+        for (let i = 0; i < users.length; i++) {
+          usersBoxselectBtn[i].addEventListener('click',function(){
+            console.log("aaa");
+            event.currentTarget.parentNode.parentNode.remove();
+
+          },false);
+        }
+
+
+
+
+
+
 
 
         let button = document.getElementById('button');
