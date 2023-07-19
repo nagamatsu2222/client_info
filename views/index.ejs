@@ -88,7 +88,7 @@
           <td><%= users[i].address %></td>
           <td><%= users[i].workplace %></td>
           <td><%= users[i].household %></td>
-          <td><input type="button" value="選択" class="usersBoxselectBtn"></td>
+          <td><input type="button" value="選択" class="usersSelectBtn"></td>
         </tr>
         <% } %>
       </tbody>
@@ -124,29 +124,24 @@
           }
         }
 
-
-        const usersBoxselectBtn = document.getElementsByClassName("usersBoxselectBtn");
+        const usersSelectBtn = document.getElementsByClassName("usersSelectBtn");
         const selectUsers = document.getElementsByClassName("selectUsers");
 
         // 選択ボタンをクリックしたら削除
-        function butotnClick(event){
+        function btnClick(event){
           event.currentTarget.parentNode.parentNode.remove();
-          for (let i = 0; i < users.length; i++) {
-            nameList.push(users[i]);
-            selectUsers[0].insertAdjacentHTML("beforeend",`<tr><td>${users[i].id}</td><td>${users[i].name}</td><td>${users[i].kana_name}</td><td>${users[i].gender}</td><td>${users[i].email}</td><td>${users[i].phone}</td><td>${users[i].address}</td><td>${users[i].workplace}</td><td>${users[i].household}</td></tr>`)
-          }
         }
-        usersBoxselectBtn[0].addEventListener('click', butotnClick);
-
+        usersSelectBtn[0].addEventListener('click', btnClick);
         for (let i = 0; i < users.length; i++) {
-          usersBoxselectBtn[i].addEventListener('click',function(){
-            console.log("aaa");
+          usersSelectBtn[i].addEventListener('click',function(){
             event.currentTarget.parentNode.parentNode.remove();
-
+            // 選択ボタンをクリックしたら選択した要素が増える
+            if(event.currentTarget.parentNode.parentNode.firstElementChild = users[i].id){
+              nameList.push(users[i]);
+              selectUsers[0].insertAdjacentHTML("beforeend",`<tr><td>${users[i].id}</td><td>${users[i].name}</td><td>${users[i].kana_name}</td><td>${users[i].gender}</td><td>${users[i].email}</td><td>${users[i].phone}</td><td>${users[i].address}</td><td>${users[i].workplace}</td><td>${users[i].household}</td></tr>`)
+            };
           },false);
         }
-
-
 
 
 
