@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>User list</title>
+    <title>顧客情報管理システムへの各機能追加</title>
     <style>
       table{
         border-collapse:  collapse;
@@ -54,12 +54,33 @@
       .select_wrap{
         margin: 40px 0 40px;
       }
+      .statBtn{
+        -webkit-appearance: none;
+        display: inline-block;
+        padding: 0 10px;
+        color: #fff;
+        height: 40px;
+        font-size: 100%;
+        vertical-align: top;
+        border: none;
+        border-radius: 5px;
+        background: #ee9917;
+        margin: 2% 0 5%;;
+      }
+      .stat_wrap{
+        margin: 0 auto;
+        width: 90%;
+        text-align: center;
+      }
     </style>
 </head>
 <body>
     <div class="search_wrap">
       <input type="search" placeholder="検索" id="nameSearch" class="search" value="">
       <input type="submit" value="送信" id="nameSearchBtn" class="search_btn" onclick="searchBtn()">
+    </div>
+    <div class="stat_wrap"><input type="button" value="統計ボタン" class="statBtn">
+      <div class="statList"></div>
     </div>
     <table class="border usersBox">
       <thead>
@@ -98,6 +119,8 @@
     </div>
     <!-- ここからjsの記述 -->
     <script type="text/javascript">
+
+        // 課題01 - 情報の絞り込み機能
         let users = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
         let user_list_box = document.getElementById('user_list_box');
         let nameSearch = document.getElementById('nameSearch');
@@ -124,6 +147,7 @@
           }
         }
 
+        // 課題02 - 情報を格納する機能
         const usersSelectBtn = document.getElementsByClassName("usersSelectBtn");
         const selectUsers = document.getElementsByClassName("selectUsers");
 
@@ -144,39 +168,20 @@
           },false);
         }
 
+        // 課題03 - 各項目の内容を統計する機能
+        const statBtn = document.getElementsByClassName("statBtn");
+        // 統計ボタンをクリックしたら
+        statBtn[0].addEventListener('click', function() {
+          console.log('クリックされました！');
+          for (let i = 0; i < users.length; i++){
+            // if(users[i].gender.length === '女性'){
+            // }
+            const MEN = (users[i].gender.match(/男性/g) || []).length;
+            const WMN = (users[i].gender.match(/女性/g) || []).length;
+            console.log(MEN);
+          }return;
 
-
-
-
-
-        let button = document.getElementById('button');
-        let form_text = document.getElementById("form_text");
-        let text_box = document.getElementById('text_box');
-
-        function change(){
-          users.forEach(function(users) {
-            console.log(users);
-            if(users.id == form_text.value){
-              text_box.insertAdjacentHTML("beforeend",`<div>${users.name}</div><div>${users.email}</div>`);
-            }
-          });
-        }
-        let form = document.getElementById('form');
-        let name = document.getElementById('name');
-        let mail = document.getElementById('mail');
-        let form_btn = document.getElementById('form_btn');
-
-
-        function update() {
-          const isRequired = form.checkValidity();
-
-          if (isRequired) {
-            form_btn.disabled = false;
-            form_btn.style.opacity = 1;
-            form_btn.style.cursor = "pointer";
-            return;
-          }
-        }
+        }, false);
 
     </script>
 </body>
