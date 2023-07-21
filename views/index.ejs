@@ -6,7 +6,7 @@
     <style>
       table{
         border-collapse:  collapse;
-        margin: 0 auto;
+        margin: 0 auto 15px;
         width: 90%;
       }
       th{
@@ -18,6 +18,12 @@
         font-size:small;
         text-align: center;
       }
+      .statList th{
+        border: none;
+      }
+      .statList td{
+        border: none;
+      } 
       .border{
         border: 1px solid;
       }
@@ -80,7 +86,12 @@
       <input type="submit" value="送信" id="nameSearchBtn" class="search_btn" onclick="searchBtn()">
     </div>
     <div class="stat_wrap"><input type="button" value="統計ボタン" class="statBtn">
-      <div class="statList"></div>
+      <table class="statList">
+      </table>
+      <table class="statList">
+      </table>
+      <table class="statList">
+      </table>
     </div>
     <table class="border usersBox">
       <thead>
@@ -170,17 +181,193 @@
 
         // 課題03 - 各項目の内容を統計する機能
         const statBtn = document.getElementsByClassName("statBtn");
+        const statList = document.getElementsByClassName("statList");
         // 統計ボタンをクリックしたら
         statBtn[0].addEventListener('click', function() {
-          console.log('クリックされました！');
-          for (let i = 0; i < users.length; i++){
-            // if(users[i].gender.length === '女性'){
-            // }
-            const MEN = (users[i].gender.match(/男性/g) || []).length;
-            const WMN = (users[i].gender.match(/女性/g) || []).length;
-            console.log(MEN);
-          }return;
+          // 性別
+          const genderMenList = [];
+          const genderWomList = [];
+          // 各都道府県
+          const area01List = [];
+          const area02List = [];
+          const area03List = [];
+          const area04List = [];
+          const area05List = [];
+          const area06List = [];
+          const area07List = [];
+          const area08List = [];
+          const area09List = [];
+          const area10List = [];
+          const area11List = [];
+          const area12List = [];
+          const area13List = [];
+          const area14List = [];
+          const area15List = [];
+          const area16List = [];
+          const area17List = [];
+          const area18List = [];
+          const area19List = [];
+          const area20List = [];
+          const area21List = [];
+          const area22List = [];
+          const area23List = [];
+          const area24List = [];
+          const area25List = [];
+          const area26List = [];
+          const area27List = [];
+          const area28List = [];
+          const area29List = [];
+          const area30List = [];
+          const area31List = [];
+          const area32List = [];
+          const area33List = [];
+          const area34List = [];
+          const area35List = [];
+          const area36List = [];
+          const area37List = [];
+          const area38List = [];
+          const area39List = [];
+          const area40List = [];
+          const area41List = [];
+          const area42List = [];
+          const area43List = [];
+          const area44List = [];
+          const area45List = [];
+          const area46List = [];
+          const area47List = [];
+          // 各都道府県
+          const oneList = [];
+          const twoList = [];
+          const threeList = [];
+          const fourList = [];
+          const fiveList = [];
 
+          for (let i = 0; i < users.length; i++){
+            // 男性、女性それぞれ何人いるのかを表示
+            if(users[i].gender === '男性'){
+              genderMenList.push(users[i]);
+            }else{
+              genderWomList.push(users[i]);
+            }
+            // 各都道府県が何人ずついるのかを表示
+            if(users[i].workplace === '北海道'){
+              area01List.push(users[i]);
+            }else if(users[i].workplace === '青森'){
+              area02List.push(users[i]);
+            }else if(users[i].workplace === '岩手'){
+              area03List.push(users[i]);
+            }else if(users[i].workplace === '宮城'){
+              area04List.push(users[i]);
+            }else if(users[i].workplace === '秋田'){
+              area05List.push(users[i]);
+            }else if(users[i].workplace === '山形'){
+              area06List.push(users[i]);
+            }else if(users[i].workplace === '福島'){
+              area07List.push(users[i]);
+            }else if(users[i].workplace === '茨城'){
+              area08List.push(users[i]);
+            }else if(users[i].workplace === '栃木'){
+              area09List.push(users[i]);
+            }else if(users[i].workplace === '群馬'){
+              area10List.push(users[i]);
+            }else if(users[i].workplace === '埼玉'){
+              area11List.push(users[i]);
+            }else if(users[i].workplace === '千葉'){
+              area12List.push(users[i]);
+            }else if(users[i].workplace === '東京'){
+              area13List.push(users[i]);
+            }else if(users[i].workplace === '神奈川'){
+              area14List.push(users[i]);
+            }else if(users[i].workplace === '新潟'){
+              area15List.push(users[i]);
+            }else if(users[i].workplace === '富山'){
+              area16List.push(users[i]);
+            }else if(users[i].workplace === '石川'){
+              area17List.push(users[i]);
+            }else if(users[i].workplace === '福井'){
+              area18List.push(users[i]);
+            }else if(users[i].workplace === '山梨'){
+              area19List.push(users[i]);
+            }else if(users[i].workplace === '長野'){
+              area20List.push(users[i]);
+            }else if(users[i].workplace === '岐阜'){
+              area21List.push(users[i]);
+            }else if(users[i].workplace === '静岡'){
+              area22List.push(users[i]);
+            }else if(users[i].workplace === '愛知'){
+              area23List.push(users[i]);
+            }else if(users[i].workplace === '三重'){
+              area24List.push(users[i]);
+            }else if(users[i].workplace === '滋賀'){
+              area25List.push(users[i]);
+            }else if(users[i].workplace === '京都'){
+              area26List.push(users[i]);
+            }else if(users[i].workplace === '大阪'){
+              area27List.push(users[i]);
+            }else if(users[i].workplace === '兵庫'){
+              area28List.push(users[i]);
+            }else if(users[i].workplace === '奈良'){
+              area29List.push(users[i]);
+            }else if(users[i].workplace === '和歌山'){
+              area30List.push(users[i]);
+            }else if(users[i].workplace === '鳥取'){
+              area31List.push(users[i]);
+            }else if(users[i].workplace === '島根'){
+              area32List.push(users[i]);
+            }else if(users[i].workplace === '岡山'){
+              area33List.push(users[i]);
+            }else if(users[i].workplace === '広島'){
+              area34List.push(users[i]);
+            }else if(users[i].workplace === '山口'){
+              area35List.push(users[i]);
+            }else if(users[i].workplace === '徳島'){
+              area36List.push(users[i]);
+            }else if(users[i].workplace === '香川'){
+              area37List.push(users[i]);
+            }else if(users[i].workplace === '愛媛'){
+              area38List.push(users[i]);
+            }else if(users[i].workplace === '高知'){
+              area39List.push(users[i]);
+            }else if(users[i].workplace === '福岡'){
+              area40List.push(users[i]);
+            }else if(users[i].workplace === '佐賀'){
+              area41List.push(users[i]);
+            }else if(users[i].workplace === '長崎'){
+              area42List.push(users[i]);
+            }else if(users[i].workplace === '熊本'){
+              area43List.push(users[i]);
+            }else if(users[i].workplace === '大分'){
+              area44List.push(users[i]);
+            }else if(users[i].workplace === '宮崎'){
+              area45List.push(users[i]);
+            }else if(users[i].workplace === '鹿児島'){
+              area46List.push(users[i]);
+            }else if(users[i].workplace === '沖縄'){
+              area47List.push(users[i]);
+            }
+            // 各世帯数がそれぞれ何人
+            if(users[i].household === 1){
+              oneList.push(users[i]);
+            }else if(users[i].household === 2){
+              twoList.push(users[i]);
+            }else if(users[i].household === 3){
+              threeList.push(users[i]);
+            }else if(users[i].household === 4){
+              fourList.push(users[i]);
+            }else if(users[i].household === 5){
+              fiveList.push(users[i]);
+            }
+          }
+          statList[0].insertAdjacentHTML("afterbegin",`<tr><th colspan="2">男性、女性それぞれ何人いるのかを表示</th></tr>`);
+          statList[0].insertAdjacentHTML("beforeend",`<tr><td>男性：${genderMenList.length}</td><td>女性：${genderWomList.length}</td></tr>`);
+          statList[1].insertAdjacentHTML("afterbegin",`<tr><th colspan="10">各都道府県が何人ずついるのかを表示</th></tr>`);
+          statList[1].insertAdjacentHTML("beforeend",`<tr><td>北海道:${area01List.length}</td><td>青森:${area02List.length}</td><td>岩手:${area03List.length}</td><td>宮城:${area04List.length}</td><td>秋田:${area05List.length}</td><td>山形:${area06List.length}</td><td>福島:${area07List.length}</td><td>茨城:${area08List.length}</td><td>:栃木:${area09List.length}</td><td>群馬:${area10List.length}</td></tr>`);
+          statList[1].insertAdjacentHTML("beforeend",`<tr><td>埼玉:${area11List.length}</td><td>千葉:${area12List.length}</td><td>東京:${area13List.length}</td><td>神奈川:${area14List.length}</td><td>新潟:${area15List.length}</td><td>富山:${area16List.length}</td><td>石川:${area17List.length}</td><td>山梨:${area18List.length}</td><td>山梨:${area19List.length}</td><td>長野:${area20List.length}</td></tr>`);
+          statList[1].insertAdjacentHTML("beforeend",`<tr><td>岐阜:${area21List.length}</td><td>静岡:${area22List.length}</td><td>愛知:${area23List.length}</td><td>三重:${area24List.length}</td><td>滋賀:${area25List.length}</td><td>京都:${area26List.length}</td><td>大阪:${area27List.length}</td><td>兵庫:${area28List.length}</td><td>奈良:${area29List.length}</td><td>和歌山:${area30List.length}</td></tr>`);
+          statList[1].insertAdjacentHTML("beforeend",`<tr><td>鳥取:${area31List.length}</td><td>島根:${area32List.length}</td><td>岡山:${area33List.length}</td><td>広島:${area34List.length}</td><td>山口:${area35List.length}</td><td>徳島:${area36List.length}</td><td>香川:${area37List.length}</td><td>愛媛:${area38List.length}</td><td>高知:${area39List.length}</td><td>福岡:${area40List.length}</td></tr>`);
+          statList[1].insertAdjacentHTML("beforeend",`<tr><td>佐賀:${area41List.length}</td><td>長崎:${area42List.length}</td><td>熊本:${area43List.length}</td><td>大分:${area44List.length}</td><td>宮崎:${area45List.length}</td><td>鹿児島:${area46List.length}</td><td>沖縄:${area47List.length}</td></tr>`);
+          statList[2].insertAdjacentHTML("afterbegin",`<tr><th colspan="5">各世帯数がそれぞれ何人ずついるのかを表示</th></tr>`);
+          statList[2].insertAdjacentHTML("beforeend",`<tr><td>世帯人数1人:${oneList.length}組</td><td>世帯人数2人:${twoList.length}組</td><td>世帯人数3人:${threeList.length}組</td><td>世帯人数4人:${fourList.length}組</td><td>世帯人数5人:${fiveList.length}組</td></tr>`);
         }, false);
 
     </script>
